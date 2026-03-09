@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#1F4E79" name="theme-color"/>
+<title>Taşeron Hakediş Takip</title>
+<!-- PWA Manifest -->
+<link href="manifest.json" rel="manifest"/>
+<!-- Icons -->
+<link href="assets/icons/icon-192.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="assets/icons/icon-192.png" rel="apple-touch-icon"/>
+<!-- CSS -->
+<link href="assets/css/main.css" rel="stylesheet"/>
+<link href="assets/css/mobile.css" rel="stylesheet"/>
+<!-- Font Awesome for icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- Loading Screen -->
+<div class="loading-screen" id="loading-screen">
+<div class="loading-spinner"></div>
+<h2>Taşeron Hakediş</h2>
+<p>Yükleniyor...</p>
+</div>
+<!-- App Container -->
+<div class="app-container" id="app" style="display: none;">
+<!-- Header -->
+<header class="app-header">
+<div class="header-left">
+<button class="menu-btn" id="menu-toggle">
+<i class="fas fa-bars"></i>
+</button>
+<h1 id="page-title">Dashboard</h1>
+</div>
+<div class="header-right">
+<button class="sync-btn" id="sync-btn">
+<i class="fas fa-sync-alt"></i>
+</button>
+<button class="notification-btn" id="notifications-btn">
+<i class="fas fa-bell"></i>
+<span class="notification-count" id="notification-count">3</span>
+</button>
+</div>
+</header>
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<img alt="Logo" class="sidebar-logo" src="assets/icons/icon-192.png?expires=1775687786&amp;signature=b4bfb2da1ba205724ba8ae3e04c7a0b56125d617dce3f14277334a62cf3a54df"/>
+<h3>Hakediş Takip</h3>
+</div>
+<ul class="sidebar-menu">
+<li><a class="menu-item active" data-page="dashboard" href="#dashboard">
+<i class="fas fa-tachometer-alt"></i> Dashboard
+                </a></li>
+<li><a class="menu-item" data-page="data-entry" href="#data-entry">
+<i class="fas fa-edit"></i> Veri Girişi
+                </a></li>
+<li><a class="menu-item" data-page="quality" href="#quality">
+<i class="fas fa-camera"></i> Kalite Kontrol
+                </a></li>
+<li><a class="menu-item" data-page="approval" href="#approval">
+<i class="fas fa-check-circle"></i> Onay Sistemi
+                </a></li>
+<li><a class="menu-item" data-page="reports" href="#reports">
+<i class="fas fa-chart-bar"></i> Raporlar
+                </a></li>
+<li><a class="menu-item" data-page="settings" href="#settings">
+<i class="fas fa-cog"></i> Ayarlar
+                </a></li>
+</ul>
+<div class="sidebar-footer">
+<div class="user-info">
+<i class="fas fa-user-circle"></i>
+<span>Ahmet Yılmaz</span>
+</div>
+<button class="logout-btn" id="logout-btn">
+<i class="fas fa-sign-out-alt"></i> Çıkış
+                </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="main-content" id="main-content">
+<!-- Pages will be loaded here dynamically -->
+</main>
+<!-- Floating Action Button -->
+<button class="fab" id="fab">
+<i class="fas fa-plus"></i>
+</button>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="bottom-nav">
+<a class="bottom-nav-item active" data-page="dashboard" href="#dashboard">
+<i class="fas fa-home"></i>
+<span>Ana Sayfa</span>
+</a>
+<a class="bottom-nav-item" data-page="data-entry" href="#data-entry">
+<i class="fas fa-edit"></i>
+<span>Veri Gir</span>
+</a>
+<a class="bottom-nav-item" data-page="quality" href="#quality">
+<i class="fas fa-camera"></i>
+<span>Kalite</span>
+</a>
+<a class="bottom-nav-item" data-page="approval" href="#approval">
+<i class="fas fa-check"></i>
+<span>Onay</span>
+</a>
+</nav>
+</div>
+<!-- Modals -->
+<div class="modal-overlay" id="modal-overlay">
+<div class="modal-content" id="modal-content">
+<!-- Modal content will be loaded here -->
+</div>
+</div>
+<!-- Toast Notifications -->
+<div class="toast-container" id="toast-container"></div>
+<!-- Scripts -->
+<script src="src/storage.js"></script>
+<script src="src/notifications.js"></script>
+<script src="src/router.js"></script>
+<script src="components/header.js"></script>
+<script src="components/sidebar.js"></script>
+<script src="components/modal.js"></script>
+<script src="pages/dashboard.js"></script>
+<script src="pages/data-entry.js"></script>
+<script src="pages/quality.js"></script>
+<script src="pages/approval.js"></script>
+<script src="data/sample-data.js"></script>
+<script src="src/app.js"></script>
+<!-- Service Worker Registration -->
+<script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
